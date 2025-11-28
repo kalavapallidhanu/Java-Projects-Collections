@@ -32,11 +32,17 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      # build the docker image
-      - name: build the docker image
-        run: |
-           IMAGE_NAME=myapp-war
-           docker build -t $IMAGE_NAME: latest .
+      - name: list target directory (optional)
+        run: ls -lh target
+
+      - name: Build Docker image (load to runner)
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile
+          push: false
+          load: true
+          tags: ${{ env.IMAGE_NAME }}
            
         
         
