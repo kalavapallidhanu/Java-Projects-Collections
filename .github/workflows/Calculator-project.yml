@@ -1,4 +1,4 @@
-name: Build Calculator
+name: Build Calculator create pipeline
 
 on:
   push:
