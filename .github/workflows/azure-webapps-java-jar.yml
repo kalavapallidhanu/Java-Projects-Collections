@@ -43,6 +43,25 @@ jobs:
           push: false
           load: true
           tags: ${{ env.IMAGE_NAME }}
+      - name: Scan image with Trivy (JSON output)
+        uses: aquasecurity/trivy-action@v0.16.0
+        with:
+          image-ref: ${{ env.IMAGE_NAME }}
+          format: json
+          output: trivy-report.json
+          exit-code: '1'               # fail job if vulnerabilities of the given severities are found
+          severity: CRITICAL,HIGH
+          vuln-type: 'os,library'
+
+      - name: Upload Trivy JSON report (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-report-${{ github.sha }}
+          path: trivy-report.json
+        
+         
+     
            
         
         
