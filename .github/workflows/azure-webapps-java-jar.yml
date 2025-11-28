@@ -32,6 +32,15 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      # build the docker image
+      - name: build the docker image
+        run: |
+           IMAGE_NAME=myapp-war
+           docker build -t $IMAGE_NAME: latest .
+           
+        
+        
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
