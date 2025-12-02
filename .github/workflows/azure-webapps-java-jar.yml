@@ -49,7 +49,7 @@ jobs:
           image-ref: ${{ env.IMAGE_NAME }}
           format: json
           output: trivy-report.json
-          ignore-unfixed: true
+          scanners: vuln,config
 
       - name: Upload Trivy JSON report (always)
         if: always()
