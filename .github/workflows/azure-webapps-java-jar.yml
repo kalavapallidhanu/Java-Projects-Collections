@@ -1,6 +1,6 @@
 
 
-name: Build and deploy JAR app to Azure Web App
+name: Build and deploy JAR app to Azure Web 
 
 env:
   AZURE_WEBAPP_NAME: your-app-name    # set this to the name of your Azure Web App
