@@ -50,4 +50,15 @@ jobs:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
 
+
+      - name: setup jfrog
+        uses: jfrog/setup-jfrog-cli@3
+      - name: install jfrog
+        run :
+         jf config add my-jfrog \
+         --url $ {{secret.jfurl}}
+         --user ${{user.jfuser}}
+         --password ${{password.jfpassword}} 
+         
+       
   
